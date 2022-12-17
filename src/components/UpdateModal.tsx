@@ -18,32 +18,28 @@ const UpdateModal: React.FC<Props> = (props) => {
   const [climate, setClimate] = useState(currentPlanet[0].climates);
   const [population, setPopulation] = useState(currentPlanet[0].population);
 
+  const handleSubmit = () => {
 
-  console.log(currentPlanet)
-
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+    const planetIndex = props.planets.indexOf(currentPlanet[0]);
 
     const newArr = [...props.planets];
-    const newPlanet = {
+    const updatedPlanet = {
       __typename: 'Planet',
       name,
       climates: [Array(climate.toString())],
       population,
       id: uuid()
+
     };
 
-    newArr.unshift(newPlanet);
-
+    newArr.splice(planetIndex, 1, updatedPlanet);
     props.setPlanets(newArr);
-    props.setUpdateModal(false);
-    
+    props.setUpdateModal(false)
+
     return;
   };
 
   const handleDelete = () => {
-
     const newData = props.planets.filter((i: any) => i !== currentPlanet[0])
 
     props.setPlanets(newData)
@@ -97,7 +93,7 @@ const UpdateModal: React.FC<Props> = (props) => {
           width: '20rem',
           justifyContent: 'space-between'
         }}>
-          <Button variant='contained' type="submit" sx={{backgroundColor:'black'}}>Update</Button>
+          <Button variant='contained' onClick={() => handleSubmit()} sx={{backgroundColor:'black'}}>Update</Button>
           <Button onClick={() => handleDelete()} variant='contained' sx={{backgroundColor:'red'}}>Delete</Button>
         </Container>
       </FormControl>
