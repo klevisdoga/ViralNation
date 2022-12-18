@@ -4,7 +4,12 @@ import Home from './components/Home';
 
 function App() {
   return (
-      <Container>
+      <Container sx={{
+        padding: '0',
+        '@media': {
+          padding: '0'
+        }
+      }}>
         <Home />
       </Container>
   );

@@ -102,7 +102,16 @@ const AddModal: React.FC<Props> = (props) => {
             marginBottom:'1rem'
           }}
         />
-        <Button variant='contained' type="submit" sx={{backgroundColor:'black'}}>Add</Button>
+        <Button 
+        variant='contained' 
+        type="submit" 
+        sx={{
+          backgroundColor:'black',
+          '&:hover': {
+            backgroundColor:'yellow',
+            color:'black'
+        }
+          }}>Add</Button>
       </FormControl>
     </form>
       </Container>

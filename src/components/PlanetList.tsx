@@ -8,7 +8,9 @@ import {
     ListItem,
     ListItemText,
     Typography,
-    Link
+    Pagination,
+    Menu,
+    MenuItem,
 } from '@mui/material';
 import AddModal from './AddModal';
 import UpdateModal from './UpdateModal';
@@ -29,113 +31,118 @@ const GET_PLANETS = gql`
 `;
 export default function PlanetList() {
     const { loading, error, data } = useQuery(GET_PLANETS);
-    const [showModal, setShowModal] = useState(false);
-    const [showUpdateModal, setUpdateModal] = useState(false);
+
+    const [showModal, setShowModal] = useState(false); //Modal state for "Add"
+    const [showUpdateModal, setUpdateModal] = useState(false); //Modal state for "Update/Delete"
+
+    // State containing fetched Data(Planets) and the "ID" of the selected planet
     const [planets, setPlanets] = useState([]);
     const [planetId, setPlanetId] = useState('');
 
-    useEffect(() => {
-        if (data) setPlanets(data.allPlanets.planets)
-    }, [data])
+    // State for the pagination component
+    const [currentPage, setCurrentPage] = useState(1);
+    const [planetsPerPage, setPlanetsPerPage] = useState(10);
 
-    if (loading) return (
-        <Container sx={{
-            width: '100%',
-            height: '100vh',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-        }}>
-            <CircularProgress color="inherit" />
-        </Container>
-    )
-    if (error) return <Typography>Error: {error.message}</Typography>;
+    // State for the "planets per page" dropdown menu
+    const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
+
+    useEffect(() => {
+        if (data) setPlanets(data.allPlanets.planets);
+    }, [data]);
+
+    if (loading)
+        return (
+            <Container sx={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <CircularProgress color="inherit" />
+            </Container>
+        );
+    if (error) return <Typography>Error: {error.message}</Typography>
+
+    const handleMenuItemClick = (numPlanets: number) => {
+        setMenuAnchorEl(null);
+        setPlanetsPerPage(numPlanets);
+        setCurrentPage(1);
+    };
+
+    // Calculate the number of pages needed for the pagination component
+    const numberOfPages = Math.ceil(planets.length / planetsPerPage);
+
+    // Get the current page of planets to display
+    const indexOfLastPlanet = currentPage * planetsPerPage;
+    const indexOfFirstPlanet = indexOfLastPlanet - planetsPerPage;
+    const currentPlanets = planets.slice(indexOfFirstPlanet, indexOfLastPlanet);
 
     return (
-        <>
-        <Header />
-        <Container sx={{
-            marginTop: '4rem'
-        }}>
-            <Container sx={{textAlign:'center'}}>
-
-            <Typography variant='h4' sx={{marginBottom:'1rem'}}>
-                Welcome traveler,
-            </Typography>
-            <Typography>
-                Here we have an index of all the planets in the Star-Wars Universe, including their name, climates, and population. This was done by making a query request to this <Link href='https://swapi-graphql.netlify.app/.netlify/functions/index'>endpoint</Link>.
-            </Typography>
-            <br/>
-            <Typography sx={{marginBottom:'2rem'}}>
-                On this journey you will be able to:
-            </Typography>
-            <Container sx={{
-                display:'flex',
-                width: '100%',
-                justifyContent:'space-between'
-            }}>
-                <Button variant='contained' sx={{
-                    backgroundColor: 'black',
-                    width: '30%',
-                    marginBottom: '2rem'
-                }}>
-                ADD
-                </Button>
-                <Button variant='contained' sx={{
-                    backgroundColor: 'black',
-                    width: '30%',
-                    marginBottom: '2rem',
-                }}>
-                UPDATE
-                </Button>
-                <Button variant='contained' sx={{
-                    backgroundColor: 'red',
-                    width: '30%',
-                    marginBottom: '2rem',
-                    '&:hover': {
-                        backgroundColor:'red'
-                    }
-                }}>
-                DELETE
-                </Button>
-            </Container>
-            
-            </Container>
-            <hr/>
-            <Typography variant='h5' sx={{marginTop:'3rem', textAlign:'center'}}>
+        <Container id='planet-list' sx={{ '@media': { padding: "0" } }}>
+            <Header />
+            <Typography variant='h5' sx={{ marginTop: '3rem', textAlign: 'center' }}>
                 Let's begin.
             </Typography>
-            <Typography sx={{textAlign:'center'}}>
-                Just click the "Add" button below or on any of the planets to get started.
-            </Typography>
-        </Container>
             <Container sx={{
                 width: '100%',
                 display: 'flex',
                 justifyContent: 'center',
                 marginTop: '2rem',
             }}>
-                
                 <Button variant='contained' sx={{
                     backgroundColor: 'black',
                     width: '30%',
                     marginBottom: '2rem',
+                    '&:hover': {
+                        backgroundColor: 'yellow',
+                        color: 'black'
+                    }
                 }}
                     onClick={() => setShowModal(true)}>
                     ADD
                 </Button>
+
                 {showModal && <AddModal
                     setShowModal={setShowModal}
                     setPlanets={setPlanets}
                     planets={planets}
                 />}
             </Container>
+            <Container sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+            }}>
+                <Pagination
+                    count={numberOfPages}
+                    page={currentPage}
+                    onChange={(event, page) => setCurrentPage(page)}
+                    color="primary"
+                    size="large"
+                    showFirstButton
+                    showLastButton
+                />
+                <Button
+                    aria-controls="planets-per-page-menu"
+                    aria-haspopup="true"
+                    onClick={(event: React.MouseEvent<HTMLButtonElement>) => setMenuAnchorEl(event.currentTarget)}>
+                    Planets per page
+                </Button>
+                <Menu
+                    id="planets-per-page-menu"
+                    anchorEl={menuAnchorEl}
+                    keepMounted
+                    open={Boolean(menuAnchorEl)}
+                    onClose={() => setMenuAnchorEl(null)}
+                >
+                    <MenuItem onClick={() => handleMenuItemClick(10)}>10</MenuItem>
+                    <MenuItem onClick={() => handleMenuItemClick(20)}>20</MenuItem>
+                    <MenuItem onClick={() => handleMenuItemClick(30)}>30</MenuItem>
+                </Menu>
+            </Container>
+
             <List sx={{
                 display: 'flex',
                 justifyContent: 'space-evenly',
-                flexWrap: 'wrap'
+                flexWrap: 'wrap',
+                padding: '1rem'
             }}>
-                {planets.map((planet: any) => (
+                {currentPlanets.map((planet: any) => (
                     <ListItem key={planet.id} sx={{
                         width: 200,
                         '&:hover': {
@@ -161,7 +168,7 @@ export default function PlanetList() {
                                     </Typography>
                                     <br />
                                     <Typography variant="body2" component="span">
-                                        Population: {planet.population || 'unknown'}
+                                        Population: {planet.population}
                                     </Typography>
                                 </>
                             }
@@ -175,6 +182,6 @@ export default function PlanetList() {
                     planetId={planetId}
                 />}
             </List>
-        </>
+        </Container>
     );
 }
