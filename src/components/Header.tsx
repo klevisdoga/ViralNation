@@ -40,7 +40,7 @@ function Header() {
               <Typography variant='h3' sx={{
                 marginBottom: '1rem',
                 fontFamily: 'Odibee Sans',
-                '@media (max-width: 390px)': {
+                '@media (max-width: 414px)': {
                   fontSize: '3rem'
                 },
                 '@media (min-width: 1280px)': {
@@ -54,7 +54,7 @@ function Header() {
                 textTransform: 'capitalize',
                 letterSpacing: '.2rem',
                 transition: '.5 ease-in-out',
-                '@media (max-width: 390px)': {
+                '@media (max-width: 414px)': {
                   fontSize: '1rem'
                 },
                 '@media (min-width: 1280px)': {
@@ -100,7 +100,7 @@ function Header() {
                 <Typography variant='h3' sx={{
                   marginBottom: '1rem',
                   fontFamily: 'Odibee Sans',
-                  '@media (max-width: 390px)': {
+                  '@media (max-width: 414px)': {
                     fontSize: '2rem'
                   },
                   '@media (min-width: 1280px)': {
@@ -129,7 +129,7 @@ function Header() {
                     backgroundColor: 'yellow',
                     color: 'black'
                   },
-                  '@media (max-width: 390px)': {
+                  '@media (max-width: 414px)': {
                     fontSize: '.5rem',
                     width: '2rem'
                   },
@@ -146,7 +146,7 @@ function Header() {
                     backgroundColor: 'yellow',
                     color: 'black'
                   },
-                  '@media (max-width: 390px)': {
+                  '@media (max-width: 414px)': {
                     fontSize: '.5rem',
                     width: '2rem'
                   },
@@ -162,7 +162,7 @@ function Header() {
                   '&:hover': {
                     backgroundColor: 'red'
                   },
-                  '@media (max-width: 390px)': {
+                  '@media (max-width: 414px)': {
                     fontSize: '.5rem',
                     width: '2rem'
                   },
@@ -180,7 +180,7 @@ function Header() {
                   letterSpacing: '.2rem',
                   transition: '.5 ease-in-out',
                   marginTop: '3rem',
-                  '@media (max-width: 390px)': {
+                  '@media (max-width: 414px)': {
                     fontSize: '1rem'
                   },
                   '@media (min-width: 1280px)': {

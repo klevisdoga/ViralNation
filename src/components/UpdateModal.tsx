@@ -82,7 +82,7 @@ const UpdateModal: React.FC<Props> = (props) => {
         <Typography
           variant='h3'
           sx={{
-            '@media (max-width: 390px)': {
+            '@media (max-width: 414px)': {
               fontSize: '2rem',
               textAlign: 'center'
             }
@@ -92,7 +92,7 @@ const UpdateModal: React.FC<Props> = (props) => {
         <Typography
           variant='h5'
           sx={{
-            '@media (max-width: 390px)': {
+            '@media (max-width: 414px)': {
               fontSize: '1rem',
               textAlign: 'center'
             }
@@ -103,7 +103,7 @@ const UpdateModal: React.FC<Props> = (props) => {
           variant='h5'
           sx={{
             marginBottom: '3rem',
-            '@media (max-width: 390px)': {
+            '@media (max-width: 414px)': {
               fontSize: '1rem',
               textAlign: 'center'
             }
@@ -111,7 +111,7 @@ const UpdateModal: React.FC<Props> = (props) => {
           Population: {currentPlanet[0].population}
         </Typography>
           <FormControl onSubmit={handleSubmit} sx={{
-            '@media (max-width: 390px)': {
+            '@media (max-width: 414px)': {
               width:'100%'
             }
           }}>
@@ -146,7 +146,7 @@ const UpdateModal: React.FC<Props> = (props) => {
               display: 'flex',
               width: '20rem',
               justifyContent: 'space-between',
-              '@media (max-width: 390px)': {
+              '@media (max-width: 414px)': {
                 width:'100%'
               }
             }}>
