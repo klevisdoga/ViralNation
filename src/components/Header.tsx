@@ -39,7 +39,13 @@ function Header() {
             <Container sx={{ width: '80%' }}>
               <Typography variant='h3' sx={{
                 marginBottom: '1rem',
-                fontFamily: 'Odibee Sans'
+                fontFamily: 'Odibee Sans',
+                '@media (max-width: 375px)': {
+                  fontSize: '3rem'
+                },
+                '@media (min-width: 1280px)': {
+                    fontSize:'6rem'
+                }
               }}>
                 WELCOME TRAVELER,
               </Typography>
@@ -47,7 +53,13 @@ function Header() {
                 fontFamily: 'Odibee Sans',
                 textTransform: 'capitalize',
                 letterSpacing: '.2rem',
-                transition: '.5 ease-in-out'
+                transition: '.5 ease-in-out',
+                '@media (max-width: 375px)': {
+                  fontSize: '1rem'
+                },
+                '@media (min-width: 1280px)': {
+                    fontSize:'3rem'
+                }
               }}>
                 Here we have an index of all the planets in the Star Wars Universe, including their name, climates, and population.
                 This was done by making a query request to this "
@@ -69,6 +81,10 @@ function Header() {
                   marginTop: '4rem',
                   '&:hover': {
                     backgroundColor: 'white'
+                  },
+                  '@media (min-width: 1280px)': {
+                      fontSize:'2rem',
+                      width:'10rem'
                   }
                 }}
                 onClick={() => setNext(true)}
@@ -79,20 +95,32 @@ function Header() {
 
             :
 
-            <Container sx={{ width: '80%' }}>
-              <Typography variant='h3' sx={{
-                marginBottom: '1rem',
-                fontFamily: 'Odibee Sans'
-              }}>
-                On this journey you will be able to:
-              </Typography>
+            <Container sx={{display:'flex', flexDirection:'column'}}>
+              <Container sx={{ width: '100%' }}>
+                <Typography variant='h3' sx={{
+                  marginBottom: '1rem',
+                  fontFamily: 'Odibee Sans',
+                  '@media (max-width: 375px)': {
+                    fontSize: '2rem'
+                  },
+                  '@media (min-width: 1280px)': {
+                      fontSize:'6rem',
+                      marginBottom: '4rem'
+                  }
+                }}>
+                  On this journey you will be able to:
+                </Typography>
+              </Container>
               <Container sx={{
                 display: 'flex',
                 width: '100%',
                 justifyContent: 'space-between',
                 backgroundColor: 'white',
                 padding: '1rem',
-                borderRadius: 8
+                borderRadius: 8,
+                '@media (min-width: 1280px)': {
+                    padding:'2rem'
+                }
               }}>
                 <Button variant='contained' sx={{
                   backgroundColor: 'black',
@@ -100,6 +128,13 @@ function Header() {
                   '&:hover': {
                     backgroundColor: 'yellow',
                     color: 'black'
+                  },
+                  '@media (max-width: 375px)': {
+                    fontSize: '.5rem',
+                    width: '2rem'
+                  },
+                  '@media (min-width: 1280px)': {
+                      fontSize:'1.75rem'
                   }
                 }}>
                   ADD
@@ -110,6 +145,13 @@ function Header() {
                   '&:hover': {
                     backgroundColor: 'yellow',
                     color: 'black'
+                  },
+                  '@media (max-width: 375px)': {
+                    fontSize: '.5rem',
+                    width: '2rem'
+                  },
+                  '@media (min-width: 1280px)': {
+                      fontSize:'1.75rem'
                   }
                 }}>
                   UPDATE
@@ -119,35 +161,55 @@ function Header() {
                   width: '30%',
                   '&:hover': {
                     backgroundColor: 'red'
+                  },
+                  '@media (max-width: 375px)': {
+                    fontSize: '.5rem',
+                    width: '2rem'
+                  },
+                  '@media (min-width: 1280px)': {
+                      fontSize:'1.75rem'
                   }
                 }}>
                   DELETE
                 </Button>
               </Container>
-              <Typography variant='h5' sx={{
-                fontFamily: 'Odibee Sans',
-                textTransform: 'capitalize',
-                letterSpacing: '.2rem',
-                transition: '.5 ease-in-out',
-                marginTop: '3rem'
-              }}>
-                To get started, <br /> scroll down and click "ADD" or select any of the existing planets.
-              </Typography>
-              <Button
-                variant='contained'
-                sx={{
-                  backgroundColor: 'yellow',
-                  color: 'black',
-                  width: '6rem',
-                  marginTop: '4rem',
-                  '&:hover': {
-                    backgroundColor: 'white'
+              <Container>
+                <Typography variant='h5' sx={{
+                  fontFamily: 'Odibee Sans',
+                  textTransform: 'capitalize',
+                  letterSpacing: '.2rem',
+                  transition: '.5 ease-in-out',
+                  marginTop: '3rem',
+                  '@media (max-width: 375px)': {
+                    fontSize: '1rem'
+                  },
+                  '@media (min-width: 1280px)': {
+                      fontSize:'2rem',
+                      marginTop:'4rem'
                   }
-                }}
-                onClick={() => setNext(false)}
-              >
-                BACK
-              </Button>
+                }}>
+                  To get started, <br /> scroll down and click "ADD" or select any of the existing planets.
+                </Typography>
+                <Button
+                  variant='contained'
+                  sx={{
+                    backgroundColor: 'yellow',
+                    color: 'black',
+                    width: '6rem',
+                    marginTop: '4rem',
+                    '&:hover': {
+                      backgroundColor: 'white'
+                    },
+                    '@media (min-width: 1280px)': {
+                        fontSize:'2rem',
+                        width:'10rem'
+                    }
+                  }}
+                  onClick={() => setNext(false)}
+                >
+                  BACK
+                </Button>
+              </Container>
             </Container>
           }
 

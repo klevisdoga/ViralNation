@@ -66,7 +66,7 @@ const UpdateModal: React.FC<Props> = (props) => {
         justifyContent: 'center',
         alignItems: 'center',
         width: '80%',
-        height: '60%',
+        height: '80%',
         margin: '0 auto',
         borderRadius: 12,
         position: 'relative'
@@ -79,26 +79,49 @@ const UpdateModal: React.FC<Props> = (props) => {
           color: 'black'
         }}
           onClick={() => props.setUpdateModal(false)} />
-        <Typography variant='h3'>
+        <Typography
+          variant='h3'
+          sx={{
+            '@media (max-width: 375px)': {
+              fontSize: '2rem',
+              textAlign: 'center'
+            }
+          }}>
           Planet: {currentPlanet[0].name}
         </Typography>
-        <Typography variant='h5'>
+        <Typography
+          variant='h5'
+          sx={{
+            '@media (max-width: 375px)': {
+              fontSize: '1rem',
+              textAlign: 'center'
+            }
+          }}>
           Climates: {currentPlanet[0].climates}
         </Typography>
-        <Typography variant='h5' sx={{ marginBottom: '3rem' }}>
+        <Typography
+          variant='h5'
+          sx={{
+            marginBottom: '3rem',
+            '@media (max-width: 375px)': {
+              fontSize: '1rem',
+              textAlign: 'center'
+            }
+          }}>
           Population: {currentPlanet[0].population}
         </Typography>
-        <form onSubmit={handleSubmit}>
-          <FormControl>
+          <FormControl onSubmit={handleSubmit} sx={{
+            '@media (max-width: 375px)': {
+              width:'100%'
+            }
+          }}>
             <TextField
               label="Name"
               defaultValue={currentPlanet[0].name}
               placeholder={currentPlanet.name}
               onChange={(event) => setName(event.target.value)}
               required
-              sx={{
-                marginBottom: '1rem'
-              }}
+              sx={{marginBottom: '1rem'}}
             />
             <TextField
               label="Climate"
@@ -122,7 +145,10 @@ const UpdateModal: React.FC<Props> = (props) => {
             <Container sx={{
               display: 'flex',
               width: '20rem',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
+              '@media (max-width: 375px)': {
+                width:'100%'
+              }
             }}>
               <Button
                 variant='contained'
@@ -139,19 +165,18 @@ const UpdateModal: React.FC<Props> = (props) => {
               <Button
                 onClick={() => handleDelete()}
                 variant='contained'
-                sx={{ 
+                sx={{
                   backgroundColor: 'red',
                   '&:hover': {
-                    backgroundColor:'red',
-                    color:'black'
-                }
-                 }}
+                    backgroundColor: 'red',
+                    color: 'black'
+                  }
+                }}
               >
                 Delete
               </Button>
             </Container>
           </FormControl>
-        </form>
       </Container>
     </Container>
   )

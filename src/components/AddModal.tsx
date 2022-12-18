@@ -56,7 +56,7 @@ const AddModal: React.FC<Props> = (props) => {
         alignItems: 'center',
         flexDirection:'column',
         width: '80%',
-        height: '60%',
+        height: '80%',
         margin: '0 auto',
         borderRadius: 12,
         position: 'relative'
@@ -69,7 +69,15 @@ const AddModal: React.FC<Props> = (props) => {
         color:'black'
       }}
       onClick={() => props.setShowModal(false)}/>
-      <Typography variant='h3' sx={{marginBottom:'3rem'}}>
+      <Typography 
+      variant='h3' 
+      sx={{
+        marginBottom:'3rem',
+        '@media (max-width: 375px)': {
+          fontSize: '2rem',
+          textAlign:'center'
+        }
+        }}>
         Add a new planet
       </Typography>
       <form onSubmit={handleSubmit}>

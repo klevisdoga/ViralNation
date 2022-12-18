@@ -75,7 +75,15 @@ export default function PlanetList() {
     return (
         <Container id='planet-list' sx={{ '@media': { padding: "0" } }}>
             <Header />
-            <Typography variant='h5' sx={{ marginTop: '3rem', textAlign: 'center' }}>
+            <Typography 
+            variant='h5' 
+            sx={{ 
+                marginTop: '3rem', 
+                textAlign: 'center',
+                '@media (min-width: 1280px)': {
+                    fontSize:'3rem'
+                }
+                }}>
                 Let's begin.
             </Typography>
             <Container sx={{
@@ -91,6 +99,9 @@ export default function PlanetList() {
                     '&:hover': {
                         backgroundColor: 'yellow',
                         color: 'black'
+                    },
+                    '@media (min-width: 1280px)': {
+                        fontSize:'1rem'
                     }
                 }}
                     onClick={() => setShowModal(true)}>
