@@ -1,7 +1,6 @@
-import { Button, FormControl, TextField } from '@mui/material';
+import { Button, Container, FormControl, TextField, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React, {useState} from 'react'
-import '../styles/AddModal.css'
 import {v4 as uuid} from 'uuid'
 
 interface Props {
@@ -37,16 +36,42 @@ const AddModal: React.FC<Props> = (props) => {
   
 
   return (
-    <div className='add-modal'>
-      <div className='modal-box'>
+    <Container sx={{
+      position: 'fixed',
+      left: '0',
+      right: '0',
+      top: '0',
+      backgroundColor: 'rgba(0, 0, 0, .8)',
+      height: '100%',
+      width: '100%',
+      zIndex: '1',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}>
+      <Container sx={{
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection:'column',
+        width: '80%',
+        height: '60%',
+        margin: '0 auto',
+        borderRadius: 12,
+        position: 'relative'
+      }}>
       <CloseIcon sx={{
         position:'absolute',
-        left:'1rem',
-        top:'1rem',
+        left:'2rem',
+        top:'2rem',
         cursor:'pointer',
-        color:'white'
+        color:'black'
       }}
       onClick={() => props.setShowModal(false)}/>
+      <Typography variant='h3' sx={{marginBottom:'3rem'}}>
+        Add a new planet
+      </Typography>
       <form onSubmit={handleSubmit}>
       <FormControl>
         <TextField
@@ -80,8 +105,8 @@ const AddModal: React.FC<Props> = (props) => {
         <Button variant='contained' type="submit" sx={{backgroundColor:'black'}}>Add</Button>
       </FormControl>
     </form>
-      </div>
-    </div>
+      </Container>
+    </Container>
   )
 }
 
