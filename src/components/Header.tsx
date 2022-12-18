@@ -58,7 +58,7 @@ function Header() {
                   fontSize: '1rem'
                 },
                 '@media (min-width: 1280px)': {
-                    fontSize:'3rem'
+                    fontSize:'2rem'
                 }
               }}>
                 Here we have an index of all the planets in the Star Wars Universe, including their name, climates, and population.
@@ -83,7 +83,7 @@ function Header() {
                     backgroundColor: 'white'
                   },
                   '@media (min-width: 1280px)': {
-                      fontSize:'2rem',
+                      fontSize:'1rem',
                       width:'10rem'
                   }
                 }}
@@ -119,7 +119,8 @@ function Header() {
                 padding: '1rem',
                 borderRadius: 8,
                 '@media (min-width: 1280px)': {
-                    padding:'2rem'
+                    padding:'1rem',
+                    width:'50%'
                 }
               }}>
                 <Button variant='contained' sx={{
@@ -134,7 +135,8 @@ function Header() {
                     width: '2rem'
                   },
                   '@media (min-width: 1280px)': {
-                      fontSize:'1.75rem'
+                      fontSize:'1rem',
+                      width:'30%'
                   }
                 }}>
                   ADD
@@ -151,7 +153,8 @@ function Header() {
                     width: '2rem'
                   },
                   '@media (min-width: 1280px)': {
-                      fontSize:'1.75rem'
+                      fontSize:'1rem',
+                      width:'30%'
                   }
                 }}>
                   UPDATE
@@ -167,7 +170,8 @@ function Header() {
                     width: '2rem'
                   },
                   '@media (min-width: 1280px)': {
-                      fontSize:'1.75rem'
+                      fontSize:'1rem',
+                      width:'30%'
                   }
                 }}>
                   DELETE
@@ -201,7 +205,7 @@ function Header() {
                       backgroundColor: 'white'
                     },
                     '@media (min-width: 1280px)': {
-                        fontSize:'2rem',
+                        fontSize:'1rem',
                         width:'10rem'
                     }
                   }}
