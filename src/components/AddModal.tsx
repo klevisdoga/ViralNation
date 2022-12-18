@@ -73,7 +73,7 @@ const AddModal: React.FC<Props> = (props) => {
       variant='h3' 
       sx={{
         marginBottom:'3rem',
-        '@media (max-width: 375px)': {
+        '@media (max-width: 390px)': {
           fontSize: '2rem',
           textAlign:'center'
         }
