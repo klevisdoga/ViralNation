@@ -2,7 +2,11 @@ import { Button, Typography, Link } from '@mui/material'
 import { Container } from '@mui/system'
 import React, { useState } from 'react'
 
-function Header() {
+interface Props {
+  setOpen: any
+}
+
+function Header(props: any) {
   const [next, setNext] = useState(false)
 
   return (
@@ -34,7 +38,6 @@ function Header() {
           display: 'flex',
           alignItems: 'center'
         }}>
-
           {!next ?
             <Container sx={{ width: '80%' }}>
               <Typography variant='h3' sx={{
@@ -44,7 +47,7 @@ function Header() {
                   fontSize: '3rem'
                 },
                 '@media (min-width: 1280px)': {
-                    fontSize:'6rem'
+                  fontSize: '6rem'
                 }
               }}>
                 WELCOME TRAVELER,
@@ -58,7 +61,7 @@ function Header() {
                   fontSize: '1rem'
                 },
                 '@media (min-width: 1280px)': {
-                    fontSize:'2rem'
+                  fontSize: '2rem'
                 }
               }}>
                 Here we have an index of all the planets in the Star Wars Universe, including their name, climates, and population.
@@ -83,8 +86,8 @@ function Header() {
                     backgroundColor: 'white'
                   },
                   '@media (min-width: 1280px)': {
-                      fontSize:'1rem',
-                      width:'10rem'
+                    fontSize: '1rem',
+                    width: '10rem'
                   }
                 }}
                 onClick={() => setNext(true)}
@@ -95,7 +98,7 @@ function Header() {
 
             :
 
-            <Container sx={{display:'flex', flexDirection:'column'}}>
+            <Container sx={{ display: 'flex', flexDirection: 'column' }}>
               <Container sx={{ width: '100%' }}>
                 <Typography variant='h3' sx={{
                   marginBottom: '1rem',
@@ -104,8 +107,8 @@ function Header() {
                     fontSize: '2rem'
                   },
                   '@media (min-width: 1280px)': {
-                      fontSize:'6rem',
-                      marginBottom: '4rem'
+                    fontSize: '6rem',
+                    marginBottom: '4rem'
                   }
                 }}>
                   On this journey you will be able to:
@@ -119,8 +122,8 @@ function Header() {
                 padding: '1rem',
                 borderRadius: 8,
                 '@media (min-width: 1280px)': {
-                    padding:'1rem',
-                    width:'50%'
+                  padding: '1rem',
+                  width: '50%'
                 }
               }}>
                 <Button variant='contained' sx={{
@@ -135,8 +138,8 @@ function Header() {
                     width: '2rem'
                   },
                   '@media (min-width: 1280px)': {
-                      fontSize:'1rem',
-                      width:'30%'
+                    fontSize: '1rem',
+                    width: '30%'
                   }
                 }}>
                   ADD
@@ -153,8 +156,8 @@ function Header() {
                     width: '2rem'
                   },
                   '@media (min-width: 1280px)': {
-                      fontSize:'1rem',
-                      width:'30%'
+                    fontSize: '1rem',
+                    width: '30%'
                   }
                 }}>
                   UPDATE
@@ -170,8 +173,8 @@ function Header() {
                     width: '2rem'
                   },
                   '@media (min-width: 1280px)': {
-                      fontSize:'1rem',
-                      width:'30%'
+                    fontSize: '1rem',
+                    width: '30%'
                   }
                 }}>
                   DELETE
@@ -188,38 +191,64 @@ function Header() {
                     fontSize: '1rem'
                   },
                   '@media (min-width: 1280px)': {
-                      fontSize:'2rem',
-                      marginTop:'4rem'
+                    fontSize: '2rem',
+                    marginTop: '4rem'
                   }
                 }}>
-                  To get started, <br /> scroll down and click "ADD" or select any of the existing planets.
+                  To get started: <br/><br/> select "CLOSE" <br/> then click on any of the existing planets or add a new planet.
                 </Typography>
-                <Button
-                  variant='contained'
-                  sx={{
-                    backgroundColor: 'yellow',
-                    color: 'black',
-                    width: '6rem',
-                    marginTop: '4rem',
-                    '&:hover': {
-                      backgroundColor: 'white'
-                    },
-                    '@media (min-width: 1280px)': {
-                        fontSize:'1rem',
-                        width:'10rem'
-                    }
-                  }}
-                  onClick={() => setNext(false)}
-                >
-                  BACK
-                </Button>
+                <Container sx={{
+                  width: '40%',
+                  display: 'flex',
+                  justifyContent: 'space-between'
+                }}>
+                  <Button
+                    variant='contained'
+                    sx={{
+                      backgroundColor: 'yellow',
+                      color: 'black',
+                      width: '6rem',
+                      marginTop: '4rem',
+                      '&:hover': {
+                        backgroundColor: 'white'
+                      },
+                      '@media (min-width: 1280px)': {
+                        fontSize: '1rem',
+                        width: '10rem'
+                      }
+                    }}
+                    onClick={() => setNext(false)}
+                  >
+                    BACK
+                  </Button>
+                  <Button
+                    variant='contained'
+                    sx={{
+                      backgroundColor: 'yellow',
+                      color: 'black',
+                      width: '6rem',
+                      marginTop: '4rem',
+                      '&:hover': {
+                        backgroundColor: 'white'
+                      },
+                      '@media (min-width: 1280px)': {
+                        fontSize: '1rem',
+                        width: '10rem'
+                      }
+                    }}
+                    onClick={() => props.setOpen(false)}
+                  >
+                    CLOSE
+                  </Button>
+
+                </Container>
               </Container>
             </Container>
           }
 
         </Container>
       </Container>
-    </Container>
+    </Container >
   )
 }
 
