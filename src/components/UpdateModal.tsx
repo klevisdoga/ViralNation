@@ -18,7 +18,6 @@ const UpdateModal: React.FC<Props> = (props) => {
   const [population, setPopulation] = useState(currentPlanet[0].population);
 
   const handleSubmit = () => {
-
     const planetIndex = props.planets.indexOf(currentPlanet[0]);
 
     const newArr = [...props.planets];
@@ -110,73 +109,73 @@ const UpdateModal: React.FC<Props> = (props) => {
           }}>
           Population: {currentPlanet[0].population}
         </Typography>
-          <FormControl onSubmit={handleSubmit} sx={{
+        <FormControl onSubmit={handleSubmit} sx={{
+          '@media (max-width: 414px)': {
+            width: '100%'
+          }
+        }}>
+          <TextField
+            label="Name"
+            defaultValue={currentPlanet[0].name}
+            placeholder={currentPlanet.name}
+            onChange={(event) => setName(event.target.value)}
+            required
+            sx={{ marginBottom: '1rem' }}
+          />
+          <TextField
+            label="Climate"
+            defaultValue={currentPlanet[0].climates}
+            onChange={(event) => setClimate(event.target.value)}
+            required
+            sx={{
+              marginBottom: '1rem'
+            }}
+          />
+          <TextField
+            label="Population"
+            type="number"
+            defaultValue={currentPlanet[0].population}
+            onChange={(event) => setPopulation(Number(event.target.value))}
+            required
+            sx={{
+              marginBottom: '1rem'
+            }}
+          />
+          <Container sx={{
+            display: 'flex',
+            width: '20rem',
+            justifyContent: 'space-between',
             '@media (max-width: 414px)': {
-              width:'100%'
+              width: '100%'
             }
           }}>
-            <TextField
-              label="Name"
-              defaultValue={currentPlanet[0].name}
-              placeholder={currentPlanet.name}
-              onChange={(event) => setName(event.target.value)}
-              required
-              sx={{marginBottom: '1rem'}}
-            />
-            <TextField
-              label="Climate"
-              defaultValue={currentPlanet[0].climates}
-              onChange={(event) => setClimate(event.target.value)}
-              required
+            <Button
+              variant='contained'
+              onClick={() => handleSubmit()}
               sx={{
-                marginBottom: '1rem'
-              }}
-            />
-            <TextField
-              label="Population"
-              type="number"
-              defaultValue={currentPlanet[0].population}
-              onChange={(event) => setPopulation(Number(event.target.value))}
-              required
+                backgroundColor: 'black',
+                '&:hover': {
+                  backgroundColor: 'yellow',
+                  color: 'black'
+                }
+              }}>
+              Update
+            </Button>
+            <Button
+              onClick={() => handleDelete()}
+              variant='contained'
               sx={{
-                marginBottom: '1rem'
-              }}
-            />
-            <Container sx={{
-              display: 'flex',
-              width: '20rem',
-              justifyContent: 'space-between',
-              '@media (max-width: 414px)': {
-                width:'100%'
-              }
-            }}>
-              <Button
-                variant='contained'
-                onClick={() => handleSubmit()}
-                sx={{
-                  backgroundColor: 'black',
-                  '&:hover': {
-                    backgroundColor: 'yellow',
-                    color: 'black'
-                  }
-                }}>
-                Update
-              </Button>
-              <Button
-                onClick={() => handleDelete()}
-                variant='contained'
-                sx={{
+                backgroundColor: 'red',
+                '&:hover': {
                   backgroundColor: 'red',
-                  '&:hover': {
-                    backgroundColor: 'red',
-                    color: 'black'
-                  }
-                }}
-              >
-                Delete
-              </Button>
-            </Container>
-          </FormControl>
+                  color: 'black'
+                }
+              }}
+            >
+              Delete
+            </Button>
+          </Container>
+        </FormControl>
       </Container>
     </Container>
   )

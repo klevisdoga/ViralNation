@@ -1,7 +1,7 @@
 import { Button, Container, FormControl, TextField, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import React, {useState} from 'react'
-import {v4 as uuid} from 'uuid'
+import React, { useState } from 'react'
+import { v4 as uuid } from 'uuid'
 
 interface Props {
   setShowModal(arg: boolean): void;
@@ -13,6 +13,10 @@ const AddModal: React.FC<Props> = (props) => {
   const [name, setName] = useState('');
   const [climate, setClimate] = useState('');
   const [population, setPopulation] = useState(0);
+
+  /**
+   * submit handler to add the new planet object to the front of the array of planets
+   */
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -27,13 +31,12 @@ const AddModal: React.FC<Props> = (props) => {
     };
 
     newArr.unshift(newPlanet);
-
     props.setPlanets(newArr);
     props.setShowModal(false);
-    
+
     return;
   };
-  
+
 
   return (
     <Container sx={{
@@ -54,74 +57,74 @@ const AddModal: React.FC<Props> = (props) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection:'column',
+        flexDirection: 'column',
         width: '80%',
         height: '80%',
         margin: '0 auto',
         borderRadius: 12,
         position: 'relative'
       }}>
-      <CloseIcon sx={{
-        position:'absolute',
-        left:'2rem',
-        top:'2rem',
-        cursor:'pointer',
-        color:'black'
-      }}
-      onClick={() => props.setShowModal(false)}/>
-      <Typography 
-      variant='h3' 
-      sx={{
-        marginBottom:'3rem',
-        '@media (max-width: 414px)': {
-          fontSize: '2rem',
-          textAlign:'center'
-        }
-        }}>
-        Add a new planet
-      </Typography>
-      <form onSubmit={handleSubmit}>
-      <FormControl>
-        <TextField
-          label="Name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          required
+        <CloseIcon sx={{
+          position: 'absolute',
+          left: '2rem',
+          top: '2rem',
+          cursor: 'pointer',
+          color: 'black'
+        }}
+          onClick={() => props.setShowModal(false)} />
+        <Typography
+          variant='h3'
           sx={{
-            marginBottom:'1rem'
-          }}
-        />
-        <TextField
-          label="Climate"
-          value={climate}
-          onChange={(event) => setClimate(event.target.value)}
-          required
-          sx={{
-            marginBottom:'1rem'
-          }}
-        />
-        <TextField
-          label="Population"
-          type="number"
-          value={population}
-          onChange={(event) => setPopulation(Number(event.target.value))}
-          required
-          sx={{
-            marginBottom:'1rem'
-          }}
-        />
-        <Button 
-        variant='contained' 
-        type="submit" 
-        sx={{
-          backgroundColor:'black',
-          '&:hover': {
-            backgroundColor:'yellow',
-            color:'black'
-        }
-          }}>Add</Button>
-      </FormControl>
-    </form>
+            marginBottom: '3rem',
+            '@media (max-width: 414px)': {
+              fontSize: '2rem',
+              textAlign: 'center'
+            }
+          }}>
+          Add a new planet
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <FormControl>
+            <TextField
+              label="Name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              required
+              sx={{
+                marginBottom: '1rem'
+              }}
+            />
+            <TextField
+              label="Climate"
+              value={climate}
+              onChange={(event) => setClimate(event.target.value)}
+              required
+              sx={{
+                marginBottom: '1rem'
+              }}
+            />
+            <TextField
+              label="Population"
+              type="number"
+              value={population}
+              onChange={(event) => setPopulation(Number(event.target.value))}
+              required
+              sx={{
+                marginBottom: '1rem'
+              }}
+            />
+            <Button
+              variant='contained'
+              type="submit"
+              sx={{
+                backgroundColor: 'black',
+                '&:hover': {
+                  backgroundColor: 'yellow',
+                  color: 'black'
+                }
+              }}>Add</Button>
+          </FormControl>
+        </form>
       </Container>
     </Container>
   )

@@ -10,6 +10,7 @@ function Header(props: any) {
   const [next, setNext] = useState(false)
 
   return (
+    // ----- Header -----
     <Container sx={{
       backgroundColor: 'black',
       height: '100vh',
@@ -38,6 +39,7 @@ function Header(props: any) {
           display: 'flex',
           alignItems: 'center'
         }}>
+          {/* ----- HERO ----- */}
           {!next ?
             <Container sx={{ width: '80%' }}>
               <Typography variant='h3' sx={{
@@ -195,12 +197,15 @@ function Header(props: any) {
                     marginTop: '4rem'
                   }
                 }}>
-                  To get started: <br/><br/> select "CLOSE" <br/> then click on any of the existing planets or add a new planet.
+                  To get started: <br /><br /> select "CLOSE" <br /> then click on any of the existing planets or add a new planet.
                 </Typography>
                 <Container sx={{
                   width: '40%',
                   display: 'flex',
-                  justifyContent: 'space-between'
+                  justifyContent: 'space-between',
+                  '@media (max-width: 414px)': {
+                    width: '100%'
+                  }
                 }}>
                   <Button
                     variant='contained'
@@ -215,6 +220,9 @@ function Header(props: any) {
                       '@media (min-width: 1280px)': {
                         fontSize: '1rem',
                         width: '10rem'
+                      },
+                      '@media (max-width: 414px)': {
+                        width: '5rem'
                       }
                     }}
                     onClick={() => setNext(false)}
@@ -234,6 +242,9 @@ function Header(props: any) {
                       '@media (min-width: 1280px)': {
                         fontSize: '1rem',
                         width: '10rem'
+                      },
+                      '@media (max-width: 414px)': {
+                        width: '5rem'
                       }
                     }}
                     onClick={() => props.setOpen(false)}

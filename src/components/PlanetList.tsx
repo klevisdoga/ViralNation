@@ -33,19 +33,16 @@ const GET_PLANETS = gql`
 export default function PlanetList() {
     const { loading, error, data } = useQuery(GET_PLANETS);
 
-    const [showModal, setShowModal] = useState(false); //Modal state for "Add"
-    const [showUpdateModal, setUpdateModal] = useState(false); //Modal state for "Update/Delete"
-    const [open, setOpen] = useState(true)
+    const [showModal, setShowModal] = useState(false); // "Add"
+    const [showUpdateModal, setUpdateModal] = useState(false); // "Update/Delete"
+    const [open, setOpen] = useState(true) //  Information/Instructions
 
-    // State containing fetched Data(Planets) and the "ID" of the selected planet
-    const [planets, setPlanets] = useState([]);
-    const [planetId, setPlanetId] = useState('');
+    const [planets, setPlanets] = useState([]); // All Planets
+    const [planetId, setPlanetId] = useState(''); // Selected Planet ID
 
     // State for the pagination component
     const [currentPage, setCurrentPage] = useState(1);
     const [planetsPerPage, setPlanetsPerPage] = useState(20);
-
-    // State for the "planets per page" dropdown menu
     const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
 
     useEffect(() => {

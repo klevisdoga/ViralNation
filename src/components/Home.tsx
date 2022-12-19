@@ -6,7 +6,7 @@ function Home() {
 
   return (
     <Grid>
-        <Intro />
+      <Intro />
     </Grid>
   )
 }
